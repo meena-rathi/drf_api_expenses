@@ -42,19 +42,35 @@ class CategoryList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ExpenseList(APIView):
-    def post(self, request):
-        budget = Budget.objects.first()  # Assuming there's only one budget
-        if not budget:
-            return Response({"error": "No budget set"}, status=status.HTTP_400_BAD_REQUEST)
+# class ExpenseList(APIView):
+#     def post(self, request):
+#         budget = Budget.objects.first()  # Assuming there's only one budget
+#         if not budget:
+#             return Response({"error": "No budget set"}, status=status.HTTP_400_BAD_REQUEST)
 
+#         serializer = ExpenseSerializer(data=request.data)
+#         if serializer.is_valid():
+#             expense = serializer.save()
+#             budget.balance -= expense.amount
+#             budget.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class ExpenseList(APIView):
+    def get(self, request):
+        expenses = Expense.objects.all()
+        serializer = ExpenseSerializer(expenses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
         serializer = ExpenseSerializer(data=request.data)
         if serializer.is_valid():
-            expense = serializer.save()
-            budget.balance -= expense.amount
-            budget.save()
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class BudgetList(APIView):
     def get(self, request):

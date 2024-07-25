@@ -24,7 +24,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class ExpenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expense
-        fields = '__all__'
+        fields = ['id', 'amount', 'description', 'category', 'date']  # Make sure all necessary fields are included
 
 class BudgetSerializer(serializers.ModelSerializer):
     class Meta:
