@@ -1,0 +1,70 @@
+# from rest_framework import generics
+# from .serializers import ExpenseSerializer, CategorySerializer
+# from .models import Expense, Category
+# from profiles.models import UserProfile
+
+# class ExpenseListCreate(generics.ListCreateAPIView):
+#     queryset = Expense.objects.all()
+#     serializer_class = ExpenseSerializer
+
+# class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Expense.objects.all()
+#     serializer_class = ExpenseSerializer
+
+# class CategoryListCreate(generics.ListCreateAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+
+# class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+
+# class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = UserProfile.objects.all()
+#     serializer_class = UserProfileSerializer
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Category, Expense, Budget
+from .serializers import CategorySerializer, ExpenseSerializer, BudgetSerializer
+
+class CategoryList(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ExpenseList(APIView):
+    def post(self, request):
+        budget = Budget.objects.first()  # Assuming there's only one budget
+        if not budget:
+            return Response({"error": "No budget set"}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = ExpenseSerializer(data=request.data)
+        if serializer.is_valid():
+            expense = serializer.save()
+            budget.balance -= expense.amount
+            budget.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class BudgetList(APIView):
+    def get(self, request):
+        budgets = Budget.objects.all()
+        serializer = BudgetSerializer(budgets, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = BudgetSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
