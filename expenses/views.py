@@ -25,9 +25,10 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, generics
+from rest_framework import generics, permissions, status
 from .models import Category, Expense, Budget
 from .serializers import CategorySerializer, ExpenseSerializer, BudgetSerializer
+from drf_api.permissions import IsOwnerOrReadOnly
 
 # class CategoryList(APIView):
 #     def get(self, request):
@@ -47,7 +48,7 @@ class CategoryList(generics.ListCreateAPIView):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class CategoryDetail(generics.RetrieveDestroyAPIView):
     """
@@ -55,7 +56,7 @@ class CategoryDetail(generics.RetrieveDestroyAPIView):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    #permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 # class ExpenseList(APIView):
 #     def post(self, request):
 #         budget = Budget.objects.first()  # Assuming there's only one budget
@@ -90,7 +91,7 @@ class ExpenseList(generics.ListCreateAPIView):
     """
     List expenses or create a new expense.
     """
-   #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ExpenseSerializer
     queryset = Expense.objects.all()
 
@@ -101,7 +102,7 @@ class ExpenseDetail(generics.RetrieveDestroyAPIView):
     """
     Retrieve or delete an expense by id.
     """
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ExpenseSerializer
     queryset = Expense.objects.all()
 
@@ -109,7 +110,7 @@ class BudgetList(generics.ListCreateAPIView):
     """
     List budgets or create a new budget.
     """
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = BudgetSerializer
     queryset = Budget.objects.all()
 
@@ -120,6 +121,6 @@ class BudgetDetail(generics.RetrieveDestroyAPIView):
     """
     Retrieve or delete a budget by id.
     """
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = BudgetSerializer
     queryset = Budget.objects.all()
