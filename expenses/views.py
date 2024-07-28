@@ -105,17 +105,21 @@ class ExpenseDetail(generics.RetrieveDestroyAPIView):
     serializer_class = ExpenseSerializer
     queryset = Expense.objects.all()
 
+class BudgetList(generics.ListCreateAPIView):
+    """
+    List budgets or create a new budget.
+    """
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = BudgetSerializer
+    queryset = Budget.objects.all()
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
-class BudgetList(APIView):
-    def get(self, request):
-        budgets = Budget.objects.all()
-        serializer = BudgetSerializer(budgets, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = BudgetSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class BudgetDetail(generics.RetrieveDestroyAPIView):
+    """
+    Retrieve or delete a budget by id.
+    """
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = BudgetSerializer
+    queryset = Budget.objects.all()
