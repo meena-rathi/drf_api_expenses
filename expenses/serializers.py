@@ -19,12 +19,12 @@ from .models import Category, Expense, Budget
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['name']
 
 class ExpenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expense
-        fields = ['id', 'amount', 'description', 'category', 'date']  # Make sure all necessary fields are included
+        fields = ['id', 'amount', 'description', 'category', 'date', 'user']
 
 class BudgetSerializer(serializers.ModelSerializer):
     class Meta:
