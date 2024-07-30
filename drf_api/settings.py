@@ -22,6 +22,40 @@ CLOUDINARY_STORAGE = {
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+# Django REST Framework Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DATETIME_FORMAT': '%d %b %Y',
+}
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
+
+# REST Auth Serializers
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+}
+
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
@@ -36,9 +70,13 @@ SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net']
+# ALLOWED_HOSTS = ['8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net']
 
-
+ALLOWED_HOSTS = [
+    '8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+    os.environ.get('ALLOWED_HOST', ),  # Explicitly add fallback Heroku domain
+    'localhost',
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -57,8 +95,17 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    
+    'corsheaders',
 ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,6 +136,22 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'drf_api.wsgi.application'
+
+
+
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+         os.environ.get('CLIENT_ORIGIN')
+     ]
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.environ.get('CLIENT_ORIGIN_DEV')]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+]
 
 
 # Database
