@@ -1,1 +1,1 @@
-web: gunicorn drf_api.wsgi
+web: gunicorn drf_api_expenses.wsgi
