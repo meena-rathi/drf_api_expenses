@@ -277,12 +277,12 @@ CSRF_TRUSTED_ORIGINS = [
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    os.environ.get('ALLOWED_HOST', ''),  # Explicitly add fallback Heroku domain
+    os.environ.get('ALLOWED_HOST', ''),  
     'localhost',
 ]
 
