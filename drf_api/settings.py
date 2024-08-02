@@ -282,7 +282,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    os.environ.get('ALLOWED_HOST', ''),  
+    os.environ.get('ALLOWED_HOST', 'expensesapi-6d53f1465c6d.herokuapp.com'),  
     'localhost',
 ]
 
