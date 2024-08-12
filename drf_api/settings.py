@@ -249,8 +249,19 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
 }
 
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+# ]
+
+
+CORS_ALLOWED_ORIGINS = [
+    'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+    'https://expenses-6281b20ca824.herokuapp.com',  # No trailing slash
+]
+
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+    'https://expenses-6281b20ca824.herokuapp.com',  # No trailing slash
 ]
 
 SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c'
