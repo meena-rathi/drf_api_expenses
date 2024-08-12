@@ -196,11 +196,6 @@
 # # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-
-
 from pathlib import Path
 import dj_database_url
 import os
@@ -249,19 +244,14 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
 }
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-# ]
-
-
 CORS_ALLOWED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    'https://expenses-6281b20ca824.herokuapp.com',  # No trailing slash
+    'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    'https://expenses-6281b20ca824.herokuapp.com',  # No trailing slash
+    'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
 ]
 
 SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c'
@@ -311,6 +301,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# CORS settings with environment variable support
 CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN'),
     os.environ.get('CLIENT_ORIGIN_DEV'),
