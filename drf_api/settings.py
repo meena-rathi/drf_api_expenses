@@ -196,20 +196,17 @@
 # # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import os
 from pathlib import Path
 import dj_database_url
-import os
 
-if os.path.exists('env.py'):
-    import env
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Django REST Framework Settings
 if 'DEV' in os.environ:
@@ -246,12 +243,12 @@ REST_AUTH_SERIALIZERS = {
 
 CORS_ALLOWED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
+    'https://expenses-6281b20ca824.herokuapp.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
+    'https://expenses-6281b20ca824.herokuapp.com',
 ]
 
 SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c'
@@ -300,13 +297,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-# CORS settings with environment variable support
-CORS_ALLOWED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN'),
-    os.environ.get('CLIENT_ORIGIN_DEV'),
-]
-CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'drf_api.urls'
 
