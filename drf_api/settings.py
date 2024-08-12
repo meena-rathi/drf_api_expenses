@@ -242,8 +242,11 @@ REST_AUTH_SERIALIZERS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    'https://expenses-6281b20ca824.herokuapp.com',
+    # 'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+    # 'https://expenses-6281b20ca824.herokuapp.com',
+
+    'https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net',  # Your frontend in the development environment
+    'https://expensesapi-6d53f1465c6d.herokuapp.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -327,10 +330,18 @@ if 'DEV' in os.environ:
         }
     }
 else:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL", ""))
-    }
-
+    DATABASE_URL = os.environ.get('DATABASE_URL')
+    if DATABASE_URL:
+        DATABASES = {
+            'default': dj_database_url.parse(DATABASE_URL)
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
