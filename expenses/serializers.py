@@ -26,6 +26,11 @@ class ExpenseSerializer(serializers.ModelSerializer):
         model = Expense
         fields = ['id', 'amount', 'description', 'category', 'date']
 
+    def validate_category(self, value):
+        if not isinstance(value, int):
+            raise serializers.ValidationError("Category must be a primary key (integer).")
+        return value
+
 class BudgetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Budget
