@@ -42,21 +42,25 @@ from drf_api.permissions import IsOwnerOrReadOnly
 #             serializer.save()
 #             return Response(serializer.data, status=status.HTTP_201_CREATED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class CategoryList(generics.ListCreateAPIView):
-    """
-    List all categories or create a new category.
-    """
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-class CategoryDetail(generics.RetrieveDestroyAPIView):
-    """
-    Retrieve or delete a category by id.
-    """
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    permission_classes = [IsOwnerOrReadOnly]
+
+# class CategoryList(generics.ListCreateAPIView):
+#     """
+#     List all categories or create a new category.
+#     """
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+# class CategoryDetail(generics.RetrieveDestroyAPIView):
+#     """
+#     Retrieve or delete a category by id.
+#     """
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+#     permission_classes = [IsOwnerOrReadOnly]
+
+
 # class ExpenseList(APIView):
 #     def post(self, request):
 #         budget = Budget.objects.first()  # Assuming there's only one budget

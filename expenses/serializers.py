@@ -14,12 +14,12 @@
 #         fields = ['id', 'amount', 'description', 'category', 'date']
 
 from rest_framework import serializers
-from .models import Category, Expense, Budget
+from .models import Expense, Budget
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'name'] 
+# class CategorySerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Category
+#         fields = ['id', 'name'] 
 
 class ExpenseSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
