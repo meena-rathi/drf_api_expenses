@@ -25,7 +25,7 @@ class ExpenseSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     class Meta:
         model = Expense
-        fields = ['id', 'amount', 'description', 'category', 'date']
+        fields = ['id', 'amount', 'description', 'date']
 
     def validate_category(self, value):
         if not isinstance(value, int):
@@ -36,4 +36,4 @@ class BudgetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Budget
         fields = ['id', 'amount', 'balance']
-        # read_only_fields = ['user']
+        # read_only_fields = ['user']s
