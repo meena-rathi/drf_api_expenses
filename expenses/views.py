@@ -1,33 +1,10 @@
-# from rest_framework import generics
-# from .serializers import ExpenseSerializer, CategorySerializer
-# from .models import Expense, Category
-# from profiles.models import UserProfile
 
-# class ExpenseListCreate(generics.ListCreateAPIView):
-#     queryset = Expense.objects.all()
-#     serializer_class = ExpenseSerializer
-
-# class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Expense.objects.all()
-#     serializer_class = ExpenseSerializer
-
-# class CategoryListCreate(generics.ListCreateAPIView):
-#     queryset = Category.objects.all()
-#     serializer_class = CategorySerializer
-
-# class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Category.objects.all()
-#     serializer_class = CategorySerializer
-
-# class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = UserProfile.objects.all()
-#     serializer_class = UserProfileSerializer
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics, permissions, status
-from .models import Category, Expense, Budget
-from .serializers import CategorySerializer, ExpenseSerializer, BudgetSerializer
+from .models import Expense, Budget
+from .serializers import  ExpenseSerializer, BudgetSerializer
 from drf_api.permissions import IsOwnerOrReadOnly
 
 # class CategoryList(APIView):
