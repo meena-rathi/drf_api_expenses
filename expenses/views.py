@@ -49,7 +49,7 @@ class BudgetList(generics.ListCreateAPIView):
         user = self.request.user
         serializer.save(user=user)
 
-class BudgetDetail(generics.RetrieveDestroyAPIView):
+class BudgetDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve or delete a budget by id.
     """
