@@ -68,7 +68,7 @@ class BudgetList(generics.ListCreateAPIView):
     """
     List budgets or create a new budget.
     """
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = BudgetSerializer
 
     def get_queryset(self):
