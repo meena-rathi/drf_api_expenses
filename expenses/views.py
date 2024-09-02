@@ -64,34 +64,53 @@ class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+# class BudgetList(generics.ListCreateAPIView):
+#     """
+#     List budgets or create a new budget.
+#     """
+#     permission_classes = [permissions.IsAuthenticated]
+#     serializer_class = BudgetSerializer
+
+#     def get_queryset(self):
+#         """
+#         Optionally restricts the returned budgets to the current user.
+#         """
+#         user = self.request.user
+#         return Budget.objects.filter(user=user)
+
+#     def perform_create(self, serializer):
+#         user = self.request.user
+#         serializer.save(user=user)
+
+# class BudgetDetail(generics.RetrieveUpdateDestroyAPIView):
+#     """
+#     Retrieve or delete a budget by id.
+#     """
+#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+#     serializer_class = BudgetSerializer
+
+#     def get_queryset(self):
+#         """
+#         Optionally restricts the returned budgets to the current user.
+#         """
+#         user = self.request.user
+#         return Budget.objects.filter(user=user)
+
 class BudgetList(generics.ListCreateAPIView):
-    """
-    List budgets or create a new budget.
-    """
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = BudgetSerializer
 
     def get_queryset(self):
-        """
-        Optionally restricts the returned budgets to the current user.
-        """
         user = self.request.user
         return Budget.objects.filter(user=user)
 
     def perform_create(self, serializer):
-        user = self.request.user
-        serializer.save(user=user)
+        serializer.save(user=self.request.user)
 
 class BudgetDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Retrieve or delete a budget by id.
-    """
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = BudgetSerializer
 
     def get_queryset(self):
-        """
-        Optionally restricts the returned budgets to the current user.
-        """
         user = self.request.user
         return Budget.objects.filter(user=user)
