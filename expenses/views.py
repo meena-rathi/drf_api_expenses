@@ -95,22 +95,31 @@ class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
 #         """
 #         user = self.request.user
 #         return Budget.objects.filter(user=user)
-
-class BudgetList(generics.ListCreateAPIView):
+lass BudgetList(generics.ListCreateAPIView):
+    """
+    List budgets or create a new budget.
+    """
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = BudgetSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        return Budget.objects.filter(user=user)
+        """
+        Optionally restrict the returned budgets to the current user.
+        """
+        return Budget.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 class BudgetDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve or delete a budget by id.
+    """
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = BudgetSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        return Budget.objects.filter(user=user)
+        """
+        Optionally restrict the returned budgets to the current user.
+        """
+        return Budget.objects.filter(user=self.request.user)
