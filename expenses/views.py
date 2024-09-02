@@ -95,7 +95,7 @@ class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
 #         """
 #         user = self.request.user
 #         return Budget.objects.filter(user=user)
-lass BudgetList(generics.ListCreateAPIView):
+class BudgetList(generics.ListCreateAPIView):
     """
     List budgets or create a new budget.
     """
