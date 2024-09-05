@@ -19,7 +19,7 @@
 # ]
 
 from django.urls import path
-from .views import  ExpenseList, BudgetList , ExpenseDetail, BudgetDetail # Update the import to match your view names
+from .views import  ExpenseList, BudgetList , ExpenseDetail, BudgetDetail, ProfileList, ProfileDetail# Update the import to match your view names
 
 urlpatterns = [
     # path('categories/', CategoryList.as_view(), name='category-list'),
@@ -29,4 +29,6 @@ urlpatterns = [
     path('expenses/<int:pk>/', ExpenseDetail.as_view(), name='expense-detail'),
     path('budgets/',BudgetList.as_view(), name='budget-list'),
     path('budgets/<int:pk>/', BudgetDetail.as_view(), name='budget-detail'),
+    path('profiles/', ProfileList.as_view(), name='profile-list'),
+    path('profiles/<int:pk>/', ProfileDetail.as_view(), name='profile-detail'),
 ]
