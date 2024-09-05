@@ -27,10 +27,10 @@ class Budget(models.Model):
 
 
 
-class Profiles(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+# class Profiles(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     bio = models.TextField(blank=True)
+#     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
 
-    def __str__(self):
-        return self.user.username
+#     def __str__(self):
+#         return self.user.username

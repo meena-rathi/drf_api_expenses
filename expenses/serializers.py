@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Expense, Budget, Profiles
+from .models import Expense, Budget
 
 # class CategorySerializer(serializers.ModelSerializer):
 #     class Meta:
@@ -22,7 +22,7 @@ class BudgetSerializer(serializers.ModelSerializer):
 
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profiles
-        fields = ['user', 'bio', 'avatar']
+# class ProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Profiles
+#         fields = ['user', 'bio', 'avatar']

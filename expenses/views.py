@@ -3,8 +3,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics, permissions, status
-from .models import Expense, Budget, Profiles
-from .serializers import  ExpenseSerializer, BudgetSerializer, ProfileSerializer
+from .models import Expense, Budget
+from .serializers import  ExpenseSerializer, BudgetSerializer
 from drf_api.permissions import IsOwnerOrReadOnly
 
 class ExpenseList(generics.ListCreateAPIView):
@@ -124,11 +124,11 @@ class BudgetDetail(generics.RetrieveUpdateDestroyAPIView):
         """
         return Budget.objects.filter(user=self.request.user)
 
-class ProfileList(generics.ListCreateAPIView):
-    queryset = Profiles.objects.all()
-    serializer_class = ProfileSerializer
+# class ProfileList(generics.ListCreateAPIView):
+#     queryset = Profiles.objects.all()
+#     serializer_class = ProfileSerializer
 
-# Retrieve, update or delete a specific profile
-class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Profiles.objects.all()
-    serializer_class = ProfileSerializer
+# # Retrieve, update or delete a specific profile
+# class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Profiles.objects.all()
+#     serializer_class = ProfileSerializer
