@@ -59,25 +59,90 @@ class ExpenseList(generics.ListCreateAPIView):
 #         return obj
 
 
+# //runnni code
+# class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     def get(self, request, pk):
+#         expense = Expense.objects.get(pk=pk, user=request.user)
+#         serializer = ExpenseSerializer(expense)
+#         return Response(serializer.data)
+
+#     def put(self, request, pk):
+#         expense = Expense.objects.get(pk=pk, user=request.user)
+#         serializer = ExpenseSerializer(expense, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def delete(self, request, pk):
+#         expense = get_object_or_404(Expense, pk=pk, user=request.user)
+#         expense.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
 
 class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    def get(self, request, pk):
-        expense = Expense.objects.get(pk=pk, user=request.user)
-        serializer = ExpenseSerializer(expense)
-        return Response(serializer.data)
+    queryset = Expense.objects.all()
+    serializer_class = ExpenseSerializer
 
-    def put(self, request, pk):
-        expense = Expense.objects.get(pk=pk, user=request.user)
-        serializer = ExpenseSerializer(expense, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    def delete(self, request, pk):
-        expense = get_object_or_404(Expense, pk=pk, user=request.user)
-        expense.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def get_queryset(self):
+        return Expense.objects.filter(user=self.request.user)
+
+    def get_queryset(self):
+        # Only allow access to the specific expense if it belongs to the user
+        return Expense.objects.filter(user=self.request.user)
+
+    def get_object(self):
+        # Override to ensure the user can only access their own expense
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied("You do not have permission to access this expense.")
+        return obj
+    def delete(self, request, *args, **kwargs):
+        try:
+            expense = self.get_object()
+            self.perform_destroy(expense)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Expense.DoesNotExist:
+            return Response({'detail': 'Expense not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'detail': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # class ExpenseList(generics.ListCreateAPIView):
 #     """
 #     List expenses or create a new expense.
