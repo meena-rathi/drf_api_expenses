@@ -19,7 +19,7 @@ class Expense(models.Model):
 
 class Budget(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add the user field
 
     def __str__(self):
