@@ -29,6 +29,8 @@ urlpatterns = [
     path('expenses/<int:pk>/', ExpenseDetail.as_view(), name='expense-detail'),
     path('expenses/<int:pk>/edit/', ExpenseDetail.as_view(), name='expense-edit'),
     path('budgets/',BudgetList.as_view(), name='budget-list'),
+    
+    path('expenses/<int:pk>/delete/', ExpenseDetail.as_view(), name='expense-detail'),
     path('expenses/create/', ExpenseList.as_view(), name='expense-create'),
     path('budgets/<int:pk>/', BudgetDetail.as_view(), name='budget-detail'),
     # path('profiles/', ProfileList.as_view(), name='profile-list'),

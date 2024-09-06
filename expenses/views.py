@@ -60,7 +60,7 @@ class ExpenseList(generics.ListCreateAPIView):
 
 
 
-class ExpenseDetail(APIView):
+class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
         expense = Expense.objects.get(pk=pk, user=request.user)
@@ -74,6 +74,10 @@ class ExpenseDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request, pk):
+        expense = get_object_or_404(Expense, pk=pk, user=request.user)
+        expense.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 # class ExpenseList(generics.ListCreateAPIView):
 #     """
 #     List expenses or create a new expense.
