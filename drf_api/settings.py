@@ -210,182 +210,6 @@
 
 
 
-# from pathlib import Path
-# import dj_database_url
-# import os
-
-# if os.path.exists('env.py'):
-#     import env
-
-# # Cloudinary storage settings
-# CLOUDINARY_STORAGE = {
-#     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
-# }
-# MEDIA_URL = '/media/'
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-# BASE_DIR = Path(__file__).resolve().parent.parent
-
-# # Django REST Framework Settings
-# if 'DEV' in os.environ:
-#     REST_FRAMEWORK = {
-#         'DEFAULT_AUTHENTICATION_CLASSES': [
-#             'rest_framework.authentication.SessionAuthentication'
-#         ],
-#         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#         'PAGE_SIZE': 10,
-#         'DATETIME_FORMAT': '%d %b %Y',
-#     }
-# else:
-#     REST_FRAMEWORK = {
-#         'DEFAULT_AUTHENTICATION_CLASSES': [
-#             'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-#         ],
-#         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#         'PAGE_SIZE': 10,
-#         'DATETIME_FORMAT': '%d %b %Y',
-#         'DEFAULT_RENDERER_CLASSES': [
-#             'rest_framework.renderers.JSONRenderer',
-#         ],
-#     }
-
-# REST_USE_JWT = True
-# JWT_AUTH_SECURE = True
-# JWT_AUTH_COOKIE = 'my-app-auth'
-# JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
-# JWT_AUTH_SAMESITE = 'None'
-
-# REST_AUTH_SERIALIZERS = {
-#     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
-# }
-
-# # CORS settings
-# CORS_ALLOWED_ORIGINS = [
-#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-#     'https://expenses-6281b20ca824.herokuapp.com',
-# ]
-
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-#     'https://expenses-6281b20ca824.herokuapp.com',
-# ]
-
-# SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c'
-
-# DEBUG = True
-
-# ALLOWED_HOSTS = [
-#     '8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-#     os.environ.get('ALLOWED_HOST', 'expensesapi-6d53f1465c6d.herokuapp.com'),
-#     'localhost',
-# ]
-
-# INSTALLED_APPS = [
-#     'django.contrib.admin',
-#     'django.contrib.auth',
-#     'django.contrib.contenttypes',
-#     'django.contrib.sessions',
-#     'django.contrib.messages',
-#     'django.contrib.staticfiles',
-#     'expenses',
-#     'rest_framework',
-#     'rest_framework.authtoken',
-#     'django.contrib.sites',
-#     'dj_rest_auth',
-#     'allauth',
-#     'allauth.account',
-#     'allauth.socialaccount',
-#     'dj_rest_auth.registration',
-#     'corsheaders',
-#     'profiles',
-# ]
-
-# SITE_ID = 1
-
-# AUTHENTICATION_BACKENDS = (
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# )
-
-# MIDDLEWARE = [
-#     'corsheaders.middleware.CorsMiddleware',
-#     'django.middleware.security.SecurityMiddleware',
-#     'django.contrib.sessions.middleware.SessionMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
-#     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#     'django.contrib.messages.middleware.MessageMiddleware',
-#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-# ]
-
-# # CORS settings with environment variable support
-# CORS_ALLOWED_ORIGINS = [
-#     os.environ.get('CLIENT_ORIGIN', 'https://default-client-origin.com'),
-#     os.environ.get('CLIENT_ORIGIN_DEV', 'https://default-client-origin-dev.com'),
-# ]
-# CORS_ALLOW_CREDENTIALS = True
-
-# ROOT_URLCONF = 'drf_api.urls'
-
-# TEMPLATES = [
-#     {
-#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-#         'DIRS': [],
-#         'APP_DIRS': True,
-#         'OPTIONS': {
-#             'context_processors': [
-#                 'django.template.context_processors.debug',
-#                 'django.template.context_processors.request',
-#                 'django.contrib.auth.context_processors.auth',
-#                 'django.contrib.messages.context_processors.messages',
-#             ],
-#         },
-#     },
-# ]
-
-# WSGI_APPLICATION = 'drf_api.wsgi.application'
-
-# # Database Configuration
-# if 'DEV' in os.environ:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-# else:
-#     DATABASES = {
-#         'default': dj_database_url.parse(os.environ.get("DATABASE_URL", ""))
-#     }
-
-# AUTH_PASSWORD_VALIDATORS = [
-#     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-#     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-#     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-#     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-# ]
-
-# LANGUAGE_CODE = 'en-us'
-# TIME_ZONE = 'UTC'
-# USE_I18N = True
-# USE_TZ = True
-
-# STATIC_URL = 'static/'
-
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-
-
-
-
-
-
-
-
-
-
 from pathlib import Path
 import dj_database_url
 import os
@@ -393,6 +217,7 @@ import os
 if os.path.exists('env.py'):
     import env
 
+# Cloudinary storage settings
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
@@ -434,14 +259,15 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
 }
 
+# CORS settings
 CORS_ALLOWED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
+    'https://expenses-6281b20ca824.herokuapp.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
+    'https://expenses-6281b20ca824.herokuapp.com',
 ]
 
 SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c'
@@ -450,7 +276,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-    os.environ.get('ALLOWED_HOST', 'expensesapi-6d53f1465c6d.herokuapp.com'),  
+    os.environ.get('ALLOWED_HOST', 'expensesapi-6d53f1465c6d.herokuapp.com'),
     'localhost',
 ]
 
@@ -494,8 +320,8 @@ MIDDLEWARE = [
 
 # CORS settings with environment variable support
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN'),
-    os.environ.get('CLIENT_ORIGIN_DEV'),
+    os.environ.get('CLIENT_ORIGIN', 'https://default-client-origin.com'),
+    os.environ.get('CLIENT_ORIGIN_DEV', 'https://default-client-origin-dev.com'),
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -547,3 +373,177 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+
+
+
+
+
+
+
+
+
+# from pathlib import Path
+# import dj_database_url
+# import os
+
+# if os.path.exists('env.py'):
+#     import env
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
+# }
+# MEDIA_URL = '/media/'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+# # Django REST Framework Settings
+# if 'DEV' in os.environ:
+#     REST_FRAMEWORK = {
+#         'DEFAULT_AUTHENTICATION_CLASSES': [
+#             'rest_framework.authentication.SessionAuthentication'
+#         ],
+#         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+#         'PAGE_SIZE': 10,
+#         'DATETIME_FORMAT': '%d %b %Y',
+#     }
+# else:
+#     REST_FRAMEWORK = {
+#         'DEFAULT_AUTHENTICATION_CLASSES': [
+#             'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+#         ],
+#         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+#         'PAGE_SIZE': 10,
+#         'DATETIME_FORMAT': '%d %b %Y',
+#         'DEFAULT_RENDERER_CLASSES': [
+#             'rest_framework.renderers.JSONRenderer',
+#         ],
+#     }
+
+# REST_USE_JWT = True
+# JWT_AUTH_SECURE = True
+# JWT_AUTH_COOKIE = 'my-app-auth'
+# JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+# JWT_AUTH_SAMESITE = 'None'
+
+# REST_AUTH_SERIALIZERS = {
+#     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+# }
+
+# CORS_ALLOWED_ORIGINS = [
+#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+#     'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
+# ]
+
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+#     'https://expenses-6281b20ca824.herokuapp.com',  # Corrected without trailing slash
+# ]
+
+# SECRET_KEY = 'django-insecure-l=vwb68gu!e2^289p!d$hvlzg#q7s629%o35ct&)8!#k#_g#=c'
+
+# DEBUG = True
+
+# ALLOWED_HOSTS = [
+#     '8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+#     os.environ.get('ALLOWED_HOST', 'expensesapi-6d53f1465c6d.herokuapp.com'),  
+#     'localhost',
+# ]
+
+# INSTALLED_APPS = [
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+#     'expenses',
+#     'rest_framework',
+#     'rest_framework.authtoken',
+#     'django.contrib.sites',
+#     'dj_rest_auth',
+#     'allauth',
+#     'allauth.account',
+#     'allauth.socialaccount',
+#     'dj_rest_auth.registration',
+#     'corsheaders',
+#     'profiles',
+# ]
+
+# SITE_ID = 1
+
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
+
+# MIDDLEWARE = [
+#     'corsheaders.middleware.CorsMiddleware',
+#     'django.middleware.security.SecurityMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+# ]
+
+# # CORS settings with environment variable support
+# CORS_ALLOWED_ORIGINS = [
+#     os.environ.get('CLIENT_ORIGIN'),
+#     os.environ.get('CLIENT_ORIGIN_DEV'),
+# ]
+# CORS_ALLOW_CREDENTIALS = True
+
+# ROOT_URLCONF = 'drf_api.urls'
+
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
+
+# WSGI_APPLICATION = 'drf_api.wsgi.application'
+
+# # Database Configuration
+# if 'DEV' in os.environ:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.environ.get("DATABASE_URL", ""))
+#     }
+
+# AUTH_PASSWORD_VALIDATORS = [
+#     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+#     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+#     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+#     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+# ]
+
+# LANGUAGE_CODE = 'en-us'
+# TIME_ZONE = 'UTC'
+# USE_I18N = True
+# USE_TZ = True
+
+# STATIC_URL = 'static/'
+
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
