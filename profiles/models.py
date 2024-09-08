@@ -1,28 +1,24 @@
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-
-from cloudinary.models import CloudinaryField
+from django.utils import timezone
 
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
-    # image = models.ImageField(upload_to='image/', default='../default_profile_qdjgyp')
-    image = CloudinaryField(
-        'image',
-        transformation={
-            'crop': 'limit',
-            'width': 800,
-            'height': 800
-        },
-        default='../placeholder_profile_xnpcwj.webp'
+    image = models.ImageField(
+        upload_to='images/', default='../default_profile_qdjgyp'
     )
+    created_at = models.DateTimeField(default=timezone.now) # Add this line
+
+
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return f"{self.owner}'s profile"
-
-# Signal to create or update the Profile when a User is created or saved
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(owner=instance)
 
-def save_profile(sender, instance, **kwargs):
-    instance.profile.save()
+post_save.connect(create_profile, sender=User)
