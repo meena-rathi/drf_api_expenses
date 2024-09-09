@@ -63,7 +63,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net','expensesapi-6d53f1465c6d.herokuapp.com']
 
 
 # Application definition
@@ -101,6 +101,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+]
 if 'CLIENT_ORIGIN' in os.environ:
      CORS_ALLOWED_ORIGINS = [
          os.environ.get('CLIENT_ORIGIN')
