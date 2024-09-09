@@ -18,21 +18,31 @@
 #     path('expenses/', views.get_expenses, name='get_expenses'),
 # ]
 
+# from django.urls import path
+# from .views import  ExpenseList, BudgetList , ExpenseDetail, BudgetDetail # Update the import to match your view names
+
+# urlpatterns = [
+#     # path('categories/', CategoryList.as_view(), name='category-list'),
+#     # path('categories/<int:pk>/', CategoryDetail.as_view(), name='category-detail'),
+#     # path('expenses/', ExpenseList.as_view(), name='expense-list'),
+#     path('expenses/', ExpenseList.as_view(), name='expense-list'),
+#     path('expenses/<int:pk>/', ExpenseDetail.as_view(), name='expense-detail'),
+#     path('expenses/<int:pk>/edit/', ExpenseDetail.as_view(), name='expense-edit'),
+#     path('budgets/',BudgetList.as_view(), name='budget-list'),
+    
+#     path('expenses/<int:pk>/delete/', ExpenseDetail.as_view(), name='expense-detail'),
+#     path('expenses/create/', ExpenseList.as_view(), name='expense-create'),
+#     path('budgets/<int:pk>/', BudgetDetail.as_view(), name='budget-detail'),
+#     # path('profiles/', ProfileList.as_view(), name='profile-list'),
+#     # path('profiles/<int:pk>/', ProfileDetail.as_view(), name='profile-detail'),
+# ]
+
 from django.urls import path
 from .views import  ExpenseList, BudgetList , ExpenseDetail, BudgetDetail # Update the import to match your view names
 
 urlpatterns = [
-    # path('categories/', CategoryList.as_view(), name='category-list'),
-    # path('categories/<int:pk>/', CategoryDetail.as_view(), name='category-detail'),
-    # path('expenses/', ExpenseList.as_view(), name='expense-list'),
-    path('expenses/', ExpenseList.as_view(), name='expense-list'),
-    path('expenses/<int:pk>/', ExpenseDetail.as_view(), name='expense-detail'),
-    path('expenses/<int:pk>/edit/', ExpenseDetail.as_view(), name='expense-edit'),
-    path('budgets/',BudgetList.as_view(), name='budget-list'),
-    
-    path('expenses/<int:pk>/delete/', ExpenseDetail.as_view(), name='expense-detail'),
-    path('expenses/create/', ExpenseList.as_view(), name='expense-create'),
-    path('budgets/<int:pk>/', BudgetDetail.as_view(), name='budget-detail'),
-    # path('profiles/', ProfileList.as_view(), name='profile-list'),
-    # path('profiles/<int:pk>/', ProfileDetail.as_view(), name='profile-detail'),
+    path('', ExpenseList.as_view(), name='expense-list'),  # Handles /expenses/
+    path('<int:pk>/', ExpenseDetail.as_view(), name='expense-detail'),  # Handles /expenses/<pk>/
+    path('budgets/', BudgetList.as_view(), name='budget-list'),  # Handles /expenses/budgets/
+    path('budgets/<int:pk>/', BudgetDetail.as_view(), name='budget-detail'),  # Handles /expenses/budgets/<pk>/
 ]
