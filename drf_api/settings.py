@@ -120,12 +120,13 @@ CSRF_TRUSTED_ORIGINS = [
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN'),
+       
         "https://expensesapi-6d53f1465c6d.herokuapp.com"
     ]
 
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{os.environ,get('CLIENT_ORIGIN_DEV')}",
+        rf"{os.environ.get('CLIENT_ORIGIN_DEV')}",
         "https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net"
     ]
 
