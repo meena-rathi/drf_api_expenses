@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import re
+import dj_database_url
 import os
 
 if os.path.exists('env.py'):
@@ -40,10 +41,12 @@ if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
         'rest_framework.renderers.JSONRenderer',
     ]
-JWT_AUTH_COOKIE = 'jwt-auth'
-JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token'
+
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
-JWT_AUTH_SECURE = True  # Set to True if using HTTPS, False otherwise
 
 
 REST_AUTH_SERIALIZERS = {
@@ -98,19 +101,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-# settings.py
-# CORS_ALLOWED_ORIGINS = [
-#     "https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net",
-#     "https://expensesapi-6d53f1465c6d.herokuapp.com"
-# ]
-
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
-# ]
-CORS_ALLOWED_ORIGINS = [
-    "https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net",
-    "https://expensesapi-6d53f1465c6d.herokuapp.com"
-]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net',
@@ -120,7 +110,6 @@ CSRF_TRUSTED_ORIGINS = [
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN'),
-       
         "https://expensesapi-6d53f1465c6d.herokuapp.com"
     ]
 
@@ -156,12 +145,17 @@ WSGI_APPLICATION = 'drf_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+if 'DEV' in os.environ:
+     DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.sqlite3',
+             'NAME': BASE_DIR / 'db.sqlite3',
+         }
+     }
+else:
+     DATABASES = {
+         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+     }
 
 
 # Password validation
