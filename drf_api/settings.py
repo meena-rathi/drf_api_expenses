@@ -99,14 +99,26 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 # settings.py
+# CORS_ALLOWED_ORIGINS = [
+#     "https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net",
+#     "https://expensesapi-6d53f1465c6d.herokuapp.com"
+# ]
+
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+# ]
 CORS_ALLOWED_ORIGINS = [
     "https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net",
     "https://expensesapi-6d53f1465c6d.herokuapp.com"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net',
+    'https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net',
+    'https://expensesapi-6d53f1465c6d.herokuapp.com'
 ]
+
+# Remove this if CORS_ALLOW_ALL_ORIGINS is True
+CORS_ALLOW_ALL_ORIGINS = True
 if 'CLIENT_ORIGIN' in os.environ:
      CORS_ALLOWED_ORIGINS = [
          os.environ.get('CLIENT_ORIGIN')
@@ -116,7 +128,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
-CORS_ALLOW_ALL_ORIGINS = True
+#CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'drf_api.urls'
 
 TEMPLATES = [
