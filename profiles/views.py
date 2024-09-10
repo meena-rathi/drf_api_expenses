@@ -4,7 +4,7 @@ from .serializers import ProfileSerializer
 from drf_api.permissions import IsOwnerOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+    
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Retrieve or update a profile.
@@ -12,7 +12,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
-    
+
 class ProfileList(generics.ListAPIView):
     """
     List all profiles.
