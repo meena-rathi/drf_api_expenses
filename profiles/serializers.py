@@ -3,7 +3,7 @@ from .models import Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    image = serializers.ImageField(required=False)  # Allow image upload
+    image = serializers.ImageField(required=False)
 
     class Meta:
         model = Profile

@@ -17,7 +17,7 @@ The model includes two classes: Budget and Expenses.
 
 | Test       | Expected           | Passed  |
 | :------------- |:-------------:| :-----:|
-| Non-authenticated user tries accessing URL endpoints '/budgets' | Displays Welcome message requesting user to sign in/up  | ✅ |
+| Non-authenticated user tries accessing URL endpoints '/expenses/budgets' | Displays Welcome message requesting user to sign in/up  | ✅ |
 | Non-authenticated user tries accessing URL endpoints '/expenses/' | Displays Welcome message requesting user to sign in/up  | ✅ |
 | Non-authenticated user tries accessing URL endpoints '/expenses/:id' | Redirected to Sign In page | ✅ |
 | Non-authenticated user tries accessing URL endpoints '/expenses/:id/edit/' | Redirected to Sign In page | ✅ |
@@ -56,9 +56,9 @@ django-filter helps with filtering API results based on date ranges. Users can r
 ### django-cors-headers
 django-cors-headers adds headers to allow requests from other websites or apps. TribeHub is set up to accept requests from any origin, making it easier to develop mobile apps that use this API.
 
-
 ##### Deployment Guide for Expenses Tracking API
-The TribeHub API is hosted on Heroku and uses an ElephantSQL Postgres database. To deploy it yourself, follow these steps:
+
+The Expenses Tracking API is hosted on Heroku and uses an Postgres database. To deploy it yourself, follow these steps:
 
 - Fork or Clone the Repository: Start by copying the project from GitHub.
 - Set Up Cloudinary: You'll need Cloudinary to host user profile images.
@@ -77,15 +77,10 @@ The TribeHub API is hosted on Heroku and uses an ElephantSQL Postgres database. 
 - Click 'Reveal Config Vars'.
 - Enter these settings:
 - CLOUDINARY_URL: Paste the Cloudinary URL you copied earlier.
-- DATABASE_URL: Get this from ElephantSQL (details below).
+- DATABASE_URL: Get this from codeInstution.
 - SECRET_KEY: Your secret key for the app.
 - ALLOWED_HOST: Your Heroku app’s URL without https://.
 
-- Log in to ElephantSQL.
-- Click 'Create new instance' on the dashboard.
-- Choose the 'Tiny Turtle (free)' plan.
-- Select the nearest data center.
-- Click 'Review' and copy the database URL starting with postgres://.
 - Go back to Heroku.
 - In the 'Deploy' tab, choose 'GitHub' for deployment.
 - Search for and connect your GitHub repo.
@@ -101,3 +96,12 @@ The TribeHub API is hosted on Heroku and uses an ElephantSQL Postgres database. 
 
 - walk thruogh project[https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106]
 - readme[TribeHub]
+
+#### Acknowledgments
+
+I would like to express my gratitude to the following individuals:
+
+- My Mentor, jubril, whose guidance and support have been invaluable.
+- Who provided significant assistance with my readme file[https://github.com/andy-guttridge/tribehub_react?tab=readme-ov-file#validator-testing].
+- kristyna_ci, whose contributions were immensely helpful throughout the project.
+- Thanks to all my classmates who provided feedback about my project. How can I make it even better?
