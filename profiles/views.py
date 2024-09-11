@@ -2,12 +2,11 @@ from rest_framework import generics, permissions
 from .models import Profile
 from .serializers import ProfileSerializer
 from drf_api.permissions import IsOwnerOrReadOnly
-from rest_framework.response import Response
-from rest_framework.views import APIView
-    
+
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Retrieve or update a profile.
+    Only the owner of the profile can update it.
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -16,7 +15,9 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
 class ProfileList(generics.ListAPIView):
     """
     List all profiles.
-    No create view as profile creation is handled by django signals.
+    Only authenticated users can view the list of profiles.
+    Profile creation is handled by Django signals, so no need for a create view here.
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    permission_classes = [permissions.IsAuthenticated]
