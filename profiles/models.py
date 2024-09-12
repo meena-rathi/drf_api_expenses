@@ -7,14 +7,15 @@ from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     image = CloudinaryField(
-        'image',
-        transformation={
-            'crop': 'limit',
-            'width': 800,
-            'height': 800
-        },
-        default='../placeholder_profile_xnpcwj.webp'
-    )
+    'image',
+    folder='profile_pictures',  # This will place the image in a 'profile_pictures' folder
+    transformation={
+        'crop': 'limit',
+        'width': 800,
+        'height': 800
+    },
+    default='profile_pictures/default_profile_qdjgyp'  # Adjust if using folders
+)
     created_at = models.DateTimeField(default=timezone.now)
     class Meta:
         ordering = ['-created_at']
