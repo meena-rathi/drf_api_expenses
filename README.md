@@ -11,6 +11,10 @@ The data model schema was designed alongside the API endpoints, using an entity 
 
 ![ERD](/drf_api/erd/erd.JPG)
 
+### User Stories 
+
+* I have designed the user stories outlined in my [GitHub project](https://github.com/users/meena-rathi/projects/3).
+
 #### **Expenses**
 
 The model includes two classes: Budget and Expenses.
@@ -30,12 +34,16 @@ The model includes two classes: Budget and Expenses.
 | Non-authenticated user tries accessing URL endpoints '/expenses/' | Redirected to Sign In page | ✅ |
 | Non-authenticated user tries accessing URL endpoints '/Profiles' | Redirected to Sign In page | ✅ |
 
-Admin has all rights to delete create update all data.
+* Admin has all rights to delete create update all data.
+
+* I have create a superuser on the postgres database [link](https://expensesapi-6d53f1465c6d.herokuapp.com/admin/login/?next=/admin/ ) log into the admin panel on the deployed API with that user.
+
+Currently you have a DEV variable commeted in env.py, so the API running in gitpod is using the postgres, not db.sqlite3 file
 
 * All bugs are resloved my API is woring fine.
 
 ## BUGS ##
-git 
+
 I hope this not a in profile I can't update in API.
 
 ## Frameworks, Libraries, and Dependencies
