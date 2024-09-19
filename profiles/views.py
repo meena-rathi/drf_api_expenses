@@ -12,7 +12,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
-class ProfileList(generics.ListAPIView):
+class ProfileList(generics.ListCreateAPIView):
     """
     List all profiles.
     Only authenticated users can view the list of profiles.
