@@ -8,13 +8,13 @@ class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     image = CloudinaryField(
     'image',
-    folder='profile_pictures',  # This will place the image in a 'profile_pictures' folder
+    folder='profile_pictures',
     transformation={
         'crop': 'limit',
         'width': 800,
         'height': 800
     },
-    default='profile_pictures/default_profile_qdjgyp'  # Adjust if using folders
+    default='profile_pictures/default_profile_qdjgyp'
 )
     created_at = models.DateTimeField(default=timezone.now)
     class Meta:
