@@ -1,4 +1,5 @@
 # ExpensesTracking
+I've developed a budget expenses project where users can add their monthly budget and expenses for various products. This allows them to track and identify which products have higher expenses compared to others.
 
 ## Project goals
 
@@ -25,9 +26,17 @@ The model includes two classes: Budget and Expenses.
 | Non-authenticated user tries accessing URL endpoints '/expenses/budgets' | Displays Welcome message requesting user to sign in/up  | ✅ |
 | Non-authenticated user tries accessing URL endpoints '/expenses/' | Displays Welcome message requesting user to sign in/up  | ✅ |
 | Non-authenticated user tries accessing URL endpoints '/expenses/:id' | Redirected to Sign In page | ✅ |
-| Non-authenticated user tries accessing URL endpoints '/expenses/:id/edit/' | Redirected to Sign In page | ✅ |
-| Non-authenticated user tries accessing URL endpoints '/expenses/:/create' | Redirected to Sign In page | ✅ |
+| Non-authenticated user tries accessing URL endpoints '/expenses/2' | Redirected to Sign In page | ✅ |
+| Non-authenticated user tries accessing URL endpoints '/expenses/' | Redirected to Sign In page | ✅ |
 | Non-authenticated user tries accessing URL endpoints '/Profiles' | Redirected to Sign In page | ✅ |
+
+Admin has all rights to delete create update all data.
+
+* All bugs are resloved my API is woring fine.
+
+## BUGS ##
+git 
+I hope this not a in profile I can't update in API.
 
 ## Frameworks, Libraries, and Dependencies
 
