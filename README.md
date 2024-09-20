@@ -19,6 +19,8 @@ The data model schema was designed alongside the API endpoints, using an entity 
 
 The model includes two classes: Budget and Expenses.
 
+* I have 2 seperate model in expenses foler. Profile model is seperate.
+
 1. The budget model has a user field, which is a foreign key, and an amount field, which is a decimal field. The amount field is used to set the monthly budget.
 
 2. Expenses Model: The amount field is a decimal field that allows up to 10 digits, including 2 decimal places. The description field stores the details of the expense. The date field automatically records the date when the expense is added. The user field is a foreign key that links each expense to a specific user, ensuring that when the user is deleted, all related expenses are also removed.
