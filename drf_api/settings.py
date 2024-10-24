@@ -88,12 +88,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'allauth.account.middleware.AccountMiddleware',
 ]
-
 CSRF_TRUSTED_ORIGINS = [
     'https://3000-meenarathi-expensestrac-lhnzjhzshcd.ws.codeinstitute-ide.net',
-    'https://expensesapi-6d53f1465c6d.herokuapp.com'
+    'https://expensesapi-6d53f1465c6d.herokuapp.com',
+    'https://8000-meenarathi-drfapiexpens-3v9i54eq91y.ws.codeinstitute-ide.net',
 ]
 
 if 'CLIENT_ORIGIN' in os.environ:
