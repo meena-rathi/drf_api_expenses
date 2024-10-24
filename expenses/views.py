@@ -5,6 +5,7 @@ from .models import Expense, Budget
 from .serializers import ExpenseSerializer, BudgetSerializer
 from rest_framework.exceptions import PermissionDenied
 
+
 class ExpenseList(generics.ListCreateAPIView):
     """
     List expenses or create a new expense.
@@ -17,6 +18,7 @@ class ExpenseList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
 
 class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -44,6 +46,7 @@ class ExpenseDetail(generics.RetrieveUpdateDestroyAPIView):
         except Exception as e:
             return Response({'detail': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 class BudgetList(generics.ListCreateAPIView):
     """
     List budgets or create a new budget.
@@ -60,6 +63,7 @@ class BudgetList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 class BudgetDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, update or delete a budget by id.
@@ -72,3 +76,5 @@ class BudgetDetail(generics.RetrieveUpdateDestroyAPIView):
         Optionally restrict the returned budgets to the current user.
         """
         return Budget.objects.filter(user=self.request.user)
+
+

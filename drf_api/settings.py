@@ -52,7 +52,7 @@ REST_AUTH_SERIALIZERS = {
 }
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net','expensesapi-6d53f1465c6d.herokuapp.com']
 
