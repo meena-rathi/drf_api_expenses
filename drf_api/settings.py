@@ -54,7 +54,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-meenarathi-drfapiexpens-wyrd33tvxwu.ws.codeinstitute-ide.net','expensesapi-6d53f1465c6d.herokuapp.com']
+ALLOWED_HOSTS = ['8000-meenarathi-drfapiexpens-3v9i54eq91y.ws.codeinstitute-ide.net','expensesapi-6d53f1465c6d.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'profiles',
     'expenses',
+    'corsheaders',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -87,6 +88,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    #'allauth.account.middleware.AccountMiddleware',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
